@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
 function Student() {
-  //Add states
+  // Add states for form fields and error messages
   const [id, setId] = useState("");
   const [stname, setName] = useState("");
   const [course, setCourse] = useState("");
@@ -17,6 +17,15 @@ function Student() {
   const [phone, setPhone] = useState("");
 
   const [students, setUsers] = useState([]);
+
+  // Error state for validation
+  const [errors, setErrors] = useState({
+    stname: "",
+    course: "",
+    fee: "",
+    email: "",
+    phone: "",
+  });
 
   useEffect(() => {
     (async () => await Load())();
@@ -28,20 +37,54 @@ function Student() {
     console.log(result.data);
   }
 
+  // Validation function
+  function validateForm() {
+    let formErrors = {};
+    let isValid = true;
+
+    if (!stname) {
+      formErrors.stname = "Student Name is required";
+      isValid = false;
+    }
+    if (!course) {
+      formErrors.course = "Course Name is required";
+      isValid = false;
+    }
+    if (!fee || isNaN(fee) || fee <= 0) {
+      formErrors.fee = "Fee must be a positive number";
+      isValid = false;
+    }
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      formErrors.email = "Email is invalid";
+      isValid = false;
+    }
+    if (!phone || phone.length < 10) {
+      formErrors.phone = "Phone number should be at least 10 digits";
+      isValid = false;
+    }
+
+    setErrors(formErrors);
+    return isValid;
+  }
+
   async function save(event) {
     event.preventDefault();
+
+    if (!validateForm()) {
+      return; 
+    }
+
     try {
       await axios.post("http://localhost:3000/api/student/add", {
-        stname: stname,
-        course: course,
-        fee: fee,
-        email: email,
-        phone: phone,
+        stname,
+        course,
+        fee,
+        email,
+        phone,
       });
       alert("Student Registration Successfully");
-
       Load();
-      resetForm(); // Reset form after successful save
+      resetForm(); 
     } catch (err) {
       alert("User Registration Failed");
     }
@@ -65,14 +108,18 @@ function Student() {
   async function update(event) {
     event.preventDefault();
 
+    if (!validateForm()) {
+      return; 
+    }
+
     try {
       await axios.put(`http://localhost:3000/api/student/update/${id}`, {
         id: id,
-        stname: stname,
-        course: course,
-        fee: fee,
-        email: email,
-        phone: phone,
+        stname,
+        course,
+        fee,
+        email,
+        phone,
       });
       alert("Registration Updated Successfully");
       Load();
@@ -116,6 +163,8 @@ function Student() {
                 variant="outlined"
                 value={stname}
                 onChange={(event) => setName(event.target.value)}
+                error={!!errors.stname}
+                helperText={errors.stname}
               />
             </Grid>
 
@@ -126,6 +175,8 @@ function Student() {
                 variant="outlined"
                 value={course}
                 onChange={(event) => setCourse(event.target.value)}
+                error={!!errors.course}
+                helperText={errors.course}
               />
             </Grid>
 
@@ -136,6 +187,8 @@ function Student() {
                 variant="outlined"
                 value={fee}
                 onChange={(event) => setFee(event.target.value)}
+                error={!!errors.fee}
+                helperText={errors.fee}
               />
             </Grid>
 
@@ -146,6 +199,8 @@ function Student() {
                 variant="outlined"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
+                error={!!errors.email}
+                helperText={errors.email}
               />
             </Grid>
 
@@ -156,6 +211,8 @@ function Student() {
                 variant="outlined"
                 value={phone}
                 onChange={(event) => setPhone(event.target.value)}
+                error={!!errors.phone}
+                helperText={errors.phone}
               />
             </Grid>
           </Grid>
