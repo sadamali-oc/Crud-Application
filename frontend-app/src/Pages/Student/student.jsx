@@ -2,13 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import ColorButtons from "../../Components/ColorButtons";
-import DataTable from "../../Components/DataTable";
+import ColorButtons from "../../Components/colorButtons";
+import DataTable from "../../Components/studentTable";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
 function Student() {
-  // Add states for form fields and error messages
+
+
+  // Add states 
   const [id, setId] = useState("");
   const [stname, setName] = useState("");
   const [course, setCourse] = useState("");

@@ -45,7 +45,7 @@ const columns = [
   },
 ];
 
-const DataTable = ({ students, editStudent, deleteStudent }) => {
+const StudentTable = ({ students, editStudent, deleteStudent }) => {
   const rows = students.map((student) => ({
     ...student,
     editStudent,
@@ -59,4 +59,4 @@ const DataTable = ({ students, editStudent, deleteStudent }) => {
   );
 };
 
-export default DataTable;
+export default StudentTable;
