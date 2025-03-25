@@ -1,11 +1,10 @@
-import * as React from 'react';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import * as React from "react";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 
 export default function ColorButtons({ onSave, onUpdate, isUpdateDisabled }) {
   return (
     <Stack direction="row" spacing={2} sx={{ marginTop: 2 }}>
-
       {/* Register Button */}
       <Button
         variant="contained"
@@ -14,17 +13,16 @@ export default function ColorButtons({ onSave, onUpdate, isUpdateDisabled }) {
         fullWidth
         onClick={onSave}
         sx={{
-          backgroundColor: '#4CAF50',
-          '&:hover': {
-            backgroundColor: '#388E3C',
+          backgroundColor: "#4CAF50",
+          "&:hover": {
+            backgroundColor: "#388E3C",
           },
-          padding: '12px 24px',
-          fontSize: '16px',
+          padding: "12px 24px",
+          fontSize: "16px",
         }}
       >
         Register
       </Button>
-
 
       {/* Update Button */}
       <Button
@@ -33,16 +31,16 @@ export default function ColorButtons({ onSave, onUpdate, isUpdateDisabled }) {
         size="large"
         fullWidth
         onClick={onUpdate}
-        disabled={isUpdateDisabled} 
+        disabled={isUpdateDisabled}
         sx={{
-          borderColor: '#4CAF50',
-          color: '#4CAF50',
-          '&:hover': {
-            borderColor: '#388E3C',
-            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+          borderColor: "#4CAF50",
+          color: "#4CAF50",
+          "&:hover": {
+            borderColor: "#388E3C",
+            backgroundColor: "rgba(76, 175, 80, 0.1)",
           },
-          padding: '12px 24px',
-          fontSize: '16px',
+          padding: "12px 24px",
+          fontSize: "16px",
         }}
       >
         Update

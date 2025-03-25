@@ -2,25 +2,19 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import ColorButtons from "../../Components/colorButtons";
-import DataTable from "../../Components/studentTable";
+import ColorButtons from "../Components/ColorButtons";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import StudentTable from "../Components/StudentTable";
 
 function Student() {
-
-
-  // Add states 
   const [id, setId] = useState("");
   const [stname, setName] = useState("");
   const [course, setCourse] = useState("");
   const [fee, setFee] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-
   const [students, setUsers] = useState([]);
-
-  // Error state for validation
   const [errors, setErrors] = useState({
     stname: "",
     course: "",
@@ -39,7 +33,6 @@ function Student() {
     console.log(result.data);
   }
 
-  // Validation function
   function validateForm() {
     let formErrors = {};
     let isValid = true;
@@ -84,6 +77,7 @@ function Student() {
         email,
         phone,
       });
+
       alert("Student Registration Successfully");
       Load();
       resetForm();
@@ -131,7 +125,6 @@ function Student() {
     }
   }
 
-  // Function to reset form after save or update
   function resetForm() {
     setId("");
     setName("");
@@ -144,7 +137,7 @@ function Student() {
   return (
     <div>
       <Typography
-        variant="h3"
+        variant="h5"
         sx={{
           textAlign: "center",
           color: "black",
@@ -152,7 +145,7 @@ function Student() {
           marginBottom: 4,
         }}
       >
-        Student Details
+        Register as a Student
       </Typography>
 
       <Paper sx={{ padding: 4, margin: "auto", maxWidth: "800px" }}>
@@ -185,7 +178,7 @@ function Student() {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="Fee"
+                label="Course Fee"
                 variant="outlined"
                 value={fee}
                 onChange={(event) => setFee(event.target.value)}
@@ -223,7 +216,7 @@ function Student() {
         </form>
       </Paper>
 
-      <DataTable
+      <StudentTable
         students={students}
         editStudent={editStudent}
         deleteStudent={DeleteStudent}
