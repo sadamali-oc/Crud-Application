@@ -6,10 +6,12 @@ import { Box } from "@mui/material";
 
 // Define columns
 const columns = [
-  { field: "id", headerName: "Student Id", width: 150 },
+  { field: "id", headerName: "Student Id", width: 90 },
   { field: "stname", headerName: "Student Name", width: 200 },
   { field: "course", headerName: "Course", width: 150 },
   { field: "fee", headerName: "Fee", width: 150 },
+  { field: "phone", headerName: "Phone No", width: 150 },
+  { field: "email", headerName: "Email", width: 250 },
   {
     field: "option",
     headerName: "Option",

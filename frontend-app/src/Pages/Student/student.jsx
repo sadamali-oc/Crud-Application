@@ -71,7 +71,7 @@ function Student() {
     event.preventDefault();
 
     if (!validateForm()) {
-      return; 
+      return;
     }
 
     try {
@@ -84,7 +84,7 @@ function Student() {
       });
       alert("Student Registration Successfully");
       Load();
-      resetForm(); 
+      resetForm();
     } catch (err) {
       alert("User Registration Failed");
     }
@@ -109,7 +109,7 @@ function Student() {
     event.preventDefault();
 
     if (!validateForm()) {
-      return; 
+      return;
     }
 
     try {
@@ -207,7 +207,7 @@ function Student() {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="Phone"
+                label="Phone Number"
                 variant="outlined"
                 value={phone}
                 onChange={(event) => setPhone(event.target.value)}
